@@ -10,7 +10,7 @@ export default function Services({ services }) {
             One partner for every digital need
           </h2>
           <p className="mt-4 text-slate-600">
-            From websites to IoT systems — we design, build, and maintain them for you.
+            Website, aplikasi, AI, atau IoT — kita sambut dari yang kecil sampai yang Anda butuhkan.
           </p>
         </div>
 

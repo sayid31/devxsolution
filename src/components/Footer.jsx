@@ -2,11 +2,11 @@ import { useRef } from 'react';
 import { Linkedin, Instagram, Github, Mail, Phone, MapPin } from 'lucide-react';
 
 const NAV = [
-  { href: '#layanan', label: 'Services' },
+  { href: '#layanan', label: 'Layanan' },
   { href: '#keunggulan', label: 'Why us' },
-  { href: '#portofolio', label: 'Work' },
-  { href: '#tentang', label: 'Process' },
-  { href: '#kontak', label: 'Contact' },
+  { href: '#portofolio', label: 'Pekerjaan' },
+  { href: '#tentang', label: 'Tentang Kami' },
+  { href: '#kontak', label: 'Kontak' },
 ];
 
 const SERVICES = [
@@ -75,7 +75,7 @@ export default function Footer({ settings }) {
             <img src="/logo-devxsolution-transparent.svg" alt={site} className="h-8 w-auto" />
           </a>
           <p className="mt-4 max-w-xs text-sm leading-6 text-slate-500">
-            {(settings?.tagline || 'End-to-end digital solutions for your business.')}
+            {(settings?.tagline || 'We help SMEs and startups turn their ideas into real digital products.')}
           </p>
           <div className="mt-5 flex gap-3">
             {[

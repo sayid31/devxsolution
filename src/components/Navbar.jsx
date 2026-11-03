@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 
 const LINKS = [
-  { href: '#beranda', label: 'Home' },
-  { href: '#layanan', label: 'Services' },
+  { href: '#beranda', label: 'Beranda' },
+  { href: '#layanan', label: 'Layanan' },
   { href: '#keunggulan', label: 'Why us' },
-  { href: '#portofolio', label: 'Work' },
-  { href: '#tentang', label: 'Process' },
-  { href: '#kontak', label: 'Contact' },
+  { href: '#portofolio', label: 'Pekerjaan' },
+  { href: '#tentang', label: 'Tentang Kami' },
+  { href: '#kontak', label: 'Kontak' },
 ];
 
 // Menu minimal slide panel ala TRIONN: tombol "Menu" membuka overlay besar dengan
@@ -48,7 +48,7 @@ export default function Navbar({ settings }) {
               href="#kontak"
               className="hidden items-center gap-2 rounded-full border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-blue-700 hover:text-blue-700 sm:inline-flex"
             >
-Start a project <ArrowUpRight size={15} />
+              Mulai Proyek <ArrowUpRight size={15} />
             </a>
             <button
               type="button"

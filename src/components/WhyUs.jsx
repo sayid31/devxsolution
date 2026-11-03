@@ -13,8 +13,7 @@ export default function WhyUs() {
               About us
             </h2>
             <p className="mt-6 max-w-md text-sm leading-6 text-slate-500">
-              An independent digital studio crafting brand experiences that mean something —
-              through strategy, design, and technology. Built to last, not to chase trends.
+              Tim digital yang paham bisnis, nggak cuma menganggap pekerjaanmu sebagai ticket kecil.
             </p>
           </div>
 

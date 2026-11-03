@@ -10,7 +10,7 @@ export default function Faq({ faqs }) {
         <div className="text-center reveal">
           <p className="text-sm font-semibold uppercase tracking-widest text-blue-700">FAQ</p>
           <h2 className="font-display mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">
-            Frequently asked questions
+            Pertanyaan yang paling sering diangkat
           </h2>
         </div>
 

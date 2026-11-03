@@ -2,7 +2,7 @@
 // Sprint 2: components read this from the API /api/* (the server already provides it).
 export const SETTINGS = {
   siteName: 'DevXSolution',
-  tagline: 'End-to-end digital solutions for your business',
+  tagline: 'We help SMEs and startups turn their ideas into real digital products.',
   email: 'halo@devxsolution.com',
   phone: '+62 812-3456-7890',
   whatsapp: '6281234567890',
@@ -20,7 +20,7 @@ export const SERVICES = [
     icon: 'code',
     title: 'Web Development',
     description:
-      'Fast, secure, and easy-to-manage websites and web apps — from company profiles to complex business systems.',
+      'Websites and web apps that look good, load fast, and don\'t give you paperwork headaches.',
     highlights: ['Company Profile', 'E-Commerce', 'Web App & Dashboard'],
   },
   {
@@ -28,7 +28,7 @@ export const SERVICES = [
     icon: 'cpu',
     title: 'AI Solutions',
     description:
-      'Machine learning, computer vision, and NLP to help your business work smarter and more automatically.',
+      'Automasi yang dirancang untuk cara kerja Anda, bukan sekadar pojok teknologi yang hubungannya.',
     highlights: ['Machine Learning', 'Computer Vision', 'Natural Language Processing'],
   },
   {
@@ -36,7 +36,7 @@ export const SERVICES = [
     icon: 'cloud',
     title: 'Cloud Solutions',
     description:
-      'Scalable, secure, and cost-efficient cloud infrastructure — migration, deployment, and monitoring.',
+      'Infrastruktur yang bisa tumbuh bersama usaha Anda, dibangun di atas kebutuhan, bukan sekadar standar.',
     highlights: ['Cloud Migration', 'DevOps & CI/CD', 'Monitoring & Backup'],
   },
   {
@@ -44,7 +44,7 @@ export const SERVICES = [
     icon: 'smartphone',
     title: 'Mobile Apps',
     description:
-      'Native and cross-platform apps for iOS and Android with a user experience that feels effortless.',
+      'Aplikasi mobile yang rapi, nyaman dipakai harian, dan siap rilis ke App Store maupun Play Store.',
     highlights: ['iOS & Android', 'Flutter / React Native', 'App Store Publishing'],
   },
   {
@@ -52,7 +52,7 @@ export const SERVICES = [
     icon: 'wifi',
     title: 'IoT Solutions',
     description:
-      'End-to-end IoT systems: sensors, realtime dashboards, and integration with your business systems.',
+      'Sensor, dashboard, dan koneksi ke sistem bisnis Anda — semua dalam satu alur yang bisa dipakai.',
     highlights: ['Smart Devices', 'Realtime Dashboard', 'System Integration'],
   },
 ];
@@ -67,19 +67,19 @@ export const STATS = [
 export const WHY_US = [
   {
     title: 'Multi-disciplinary team',
-    description: 'Developers, data scientists, and DevOps in one team — every aspect of a digital solution covered.',
+    description: 'Satu tim yang punya grafik backend, data, dan operasional — jadi Anda tidak perlu kumpulkan vendor sendiri.',
   },
   {
     title: 'Transparent & measurable',
-    description: 'Weekly sprints, regular demos, and progress reports you can check at any time.',
+    description: 'Komitmen jelas: perkembangan rutin, demo yang bisa kamu lihat, dan laporan yang nggak ribet.',
   },
   {
     title: 'Tech that fits the need',
-    description: 'We pick the stack based on business needs, not trends — so it stays maintainable long term.',
+    description: 'Kita pilih teknologi berdasarkan pekerjaan Anda, bukan tren. Karena baru yang enak dipakai jangka panjang.',
   },
   {
     title: 'Long-term support',
-    description: 'A 3-month bug-fix warranty and optional maintenance contracts for peace of mind.',
+    description: 'Jaminan perbaikan lubang kecil selama tiga bulan, plus opsi layanan terdokumentasi kalau butuh.',
   },
 ];
 
@@ -95,7 +95,7 @@ export const PROJECTS = [
     slug: 'demo-project-1',
     title: 'Factory IoT Monitoring System',
     category: 'IoT Solutions',
-    description: 'Realtime dashboard monitoring temperature, humidity, and machine sensors on the production floor.',
+    description: 'Tampilan yang menampilkan suhu, kelembapan, dan data sensor produksi secarag langsung.',
     tech: ['React', 'Node.js', 'MongoDB', 'MQTT'],
     image: '',
     link: '',
@@ -104,7 +104,7 @@ export const PROJECTS = [
     slug: 'demo-project-2',
     title: 'Warehouse Object Detection AI',
     category: 'AI Solutions',
-    description: 'Computer vision that counts and tracks inventory automatically from CCTV cameras.',
+    description: 'Visual yang bisa menghitung dan melacak stok dari kamera, dari sisi yang bisa diperiksa.',
     tech: ['Python', 'TensorFlow', 'OpenCV'],
     image: '',
     link: '',
@@ -113,7 +113,7 @@ export const PROJECTS = [
     slug: 'demo-project-3',
     title: 'Fashion E-Commerce Platform',
     category: 'Web Development',
-    description: 'A complete online store with payment gateway, logistics, and an admin dashboard.',
+    description: 'Toko online dengan pembayaran, pengiriman, dan halaman admin yang nyaman dipakai tim.',
     tech: ['Next.js', 'PostgreSQL', 'Midtrans'],
     image: '',
     link: '',
@@ -122,7 +122,7 @@ export const PROJECTS = [
     slug: 'demo-project-4',
     title: 'Multi-Outlet POS App',
     category: 'Mobile Apps',
-    description: 'A cross-platform POS app for iOS and Android with offline-first sync.',
+    description: 'Aplikasi POS yang bisa dipakai di dua sistem sekaligus, dan tetap bisa bekerja saat jaringan lemot.',
     tech: ['Flutter', 'Firebase'],
     image: '',
     link: '',
@@ -134,21 +134,21 @@ export const TESTIMONIALS = [
     name: 'Andi Wijaya',
     role: 'CEO, PT Maju Teknologi',
     quote:
-      'The DevXSolution team was highly responsive. The system they built went far beyond our expectations and was delivered on time.',
+      'Timnya cepat merespons, hasilnya sesuai, dan proses pengiriman teratur. Nggak ada drama yang merdu.',
     rating: 5,
   },
   {
     name: 'Sari Kusuma',
     role: 'Owner, Retail Bumami',
     quote:
-      'The POS app is easy for all our cashiers to use. It fully supported our expansion into new outlets.',
+      'Aplikasinya gampang dipakai kasir, juga support jam buka yang baru nambah. Cocok banget buat kami.',
     rating: 5,
   },
   {
     name: 'Budi Santoso',
     role: 'Operations Manager, Pabrik Sejahtera',
     quote:
-      'Their IoT solution cut our machine downtime by 30%. The dashboard is informative and easy to understand.',
+      'Layarnya mantep, dashboardnya ngasih gambaran yang gampang di baca, dan mesinnya nggak lagi macet 5 jam.',
     rating: 5,
   },
 ];
@@ -157,30 +157,30 @@ export const FAQS = [
   {
     question: 'How long does a project take?',
     answer:
-      'It depends on complexity. A company profile usually takes 2–4 weeks, a business application 1–3 months. We send a detailed estimate in the proposal.',
+      'Terlihat ribet tergantung yang diminta. Profil perusahaan biasanya 2–4 minggu, aplikasi bisnis 1–3 bulan. Estimasi detail dikirim lewat proposal.',
     order: 1,
   },
   {
     question: 'How does the payment schedule work?',
     answer:
-      'Typically 40% upfront, 30% mid-project, and 30% on handover. It can be adjusted for larger projects.',
+      'Biasanya 40% di awal, 30% saat proyek utama, 30% setelah sistem selesai. Bisa disesuaikan kalau proyeknya lebih besar.',
     order: 2,
   },
   {
     question: 'Is there a warranty and support after launch?',
     answer:
-      'Yes. Every project includes a 3-month bug-fix warranty and an optional monthly maintenance contract.',
+      'Bisa. Semua proyek ini dilengkapi perbaikan awal 3 bulan, plus opsi layanan bulanan kalau mau.',
     order: 3,
   },
   {
     question: 'Do we get the source code?',
-    answer: 'Yes, the full source code is handed over along with brief documentation once payment is complete.',
+    answer: 'Bisa. Source code lengkap diterima setelah pembayaran selesai, lengkap dengan panduan singkat yang gampang diulang.',
     order: 4,
   },
   {
     question: 'Can you extend an existing system?',
     answer:
-      'Yes. We start with a technical audit, then propose a remediation or migration plan.',
+      'Bisa. Kita mulai dari audit teknis, baru lanjutkan ke usulan perbaikan atau migrasi.',
     order: 5,
   },
 ];

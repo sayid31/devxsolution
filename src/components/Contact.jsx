@@ -32,10 +32,10 @@ export default function Contact({ settings }) {
         <div className="mx-auto max-w-2xl text-center reveal">
           <p className="text-sm font-semibold uppercase tracking-widest text-blue-700">Contact</p>
           <h2 className="font-display mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">
-            Ready to talk about your project?
+            Cerita kepada tim yang mau ngapain?
           </h2>
           <p className="mt-4 text-slate-600">
-            Tell us what you need — we'll send an estimate and a work plan within 1–2 business days.
+            Isi kebutuhan proyek Anda, nanti tim akan kirim estimasi dan garis besar kode kerja dalam 1–2 hari kerja.
           </p>
         </div>
 
@@ -121,12 +121,12 @@ export default function Contact({ settings }) {
               </label>
             </div>
             <label className="mt-4 block">
-              <span className="mb-1.5 block text-sm font-medium text-slate-700">Tell us what you need *</span>
+              <span className="mb-1.5 block text-sm font-medium text-slate-700">Uraikan kebutuhan Anda *</span>
               <textarea
                 required
                 name="message"
                 rows={4}
-                placeholder="Example: we need a POS app for 5 outlets..."
+                placeholder="Contoh: butuh aplikasi POS untuk 5 cabang..."
                 className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
             </label>
@@ -149,13 +149,13 @@ export default function Contact({ settings }) {
 
             {status === 'success' && (
               <p className="mt-4 flex items-center gap-2 rounded-xl bg-green-50 px-4 py-3 text-sm text-green-700">
-                <CheckCircle2 size={18} /> Thank you! Your message is on its way — we'll reply
-                within 1–2 business days.
+                <CheckCircle2 size={18} /> Terima kasih! Pesan Anda telah terkirim — balasan
+                akan dikirim dalam 1–2 hari kerja.
               </p>
             )}
             {status === 'error' && (
               <p className="mt-4 flex items-center gap-2 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
-                <AlertCircle size={18} /> Could not send. Please try again or email us directly.
+                <AlertCircle size={18} /> Gagal mengirim. Coba lagi atau email langsung ke kami.
               </p>
             )}
           </form>

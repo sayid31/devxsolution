@@ -5,6 +5,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 88px;
+  /* Versi terang saja — menutup paksaan mode gelap dari browser/HP. */
+  color-scheme: light;
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

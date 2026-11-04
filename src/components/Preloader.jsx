@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
 // Preloader ala TRIONN: logo muncul, counter naik, lalu tirai terangkat.
+// Diputar hanya untuk kunjungan pertama per sesi (buka ulang / pindah section
+// tidak perlu menunggu tirai lagi) dan lebih singkat di layar kecil.
 export default function Preloader({ onDone }) {
   const rootRef = useRef(null);
   const cardRef = useRef(null);
@@ -11,13 +13,30 @@ export default function Preloader({ onDone }) {
 
   useEffect(() => {
     const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    if (reduced || !rootRef.current) {
+
+    // Penanda "sudah pernah lihat preloader" — sessionStorage (per tab),
+    // otomatis hilang saat tab ditutup. Gagal akses (mode privat) → aman.
+    let seen = false;
+    try {
+      seen = sessionStorage.getItem('dx-preloader-seen') === '1';
+      sessionStorage.setItem('dx-preloader-seen', '1');
+    } catch {
+      /* mode privat: anggap belum pernah */
+    }
+
+    if (reduced || seen || !rootRef.current) {
       setGone(true);
       onDone?.();
       return undefined;
     }
 
     document.body.style.overflow = 'hidden';
+
+    // Layar sempit → versi lebih singkat supaya konten cepat tampil.
+    const small = window.matchMedia?.('(max-width: 640px)').matches;
+    const D = small
+      ? { cardIn: 0.4, count: 0.7, pause: 0.15, cardOut: 0.25, curtain: 0.5 }
+      : { cardIn: 0.5, count: 1.1, pause: 0.25, cardOut: 0.3, curtain: 0.65 };
 
     const obj = { p: 0 };
     const tl = gsap.timeline({
@@ -30,28 +49,28 @@ export default function Preloader({ onDone }) {
     tl.fromTo(
       cardRef.current,
       { autoAlpha: 0, y: 24 },
-      { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power3.out' }
+      { autoAlpha: 1, y: 0, duration: D.cardIn, ease: 'power3.out' }
     )
       .to(
         obj,
         {
           p: 100,
-          duration: 1.1,
+          duration: D.count,
           ease: 'power2.inOut',
           onUpdate: () => setProgress(Math.round(obj.p)),
         },
-        0.15
+        0.12
       )
       .fromTo(
         barRef.current,
         { scaleX: 0 },
-        { scaleX: 1, duration: 1.1, ease: 'power2.inOut' },
-        0.15
+        { scaleX: 1, duration: D.count, ease: 'power2.inOut' },
+        0.12
       )
-      .to(cardRef.current, { autoAlpha: 0, y: -18, duration: 0.3, ease: 'power2.in' }, '+=0.25')
+      .to(cardRef.current, { autoAlpha: 0, y: -18, duration: D.cardOut, ease: 'power2.in' }, `+=${D.pause}`)
       .to(rootRef.current, {
         yPercent: -100,
-        duration: 0.65,
+        duration: D.curtain,
         ease: 'power4.inOut',
         // Hero mulai masuk saat tirai mulai terangkat (preloader masih menutupi),
         // bukan setelahnya — supaya konten tidak sempat berkedip di balik tirai.

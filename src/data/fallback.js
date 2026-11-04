@@ -1,12 +1,37 @@
 // Placeholder data mirror (before real CMS content is applied).
 // Sprint 2: components read this from the API /api/* (the server already provides it).
+// ══════════════════════════════════════════════════════════════════════
+//  KONTAK — nilainya diambil dari environment:
+//   • lokal : server/.env lewat API (CONTACT_EMAIL, CONTACT_PHONE_1, ...)
+//   • Vercel: VITE_CONTACT_* (Project Settings → Environment Variables)
+//  Baris di bawah hanya cadangan kalau keduanya kosong.
+// ══════════════════════════════════════════════════════════════════════
+const EMAIL_FROM_ENV = import.meta.env.VITE_CONTACT_EMAIL;
+const PHONES_FROM_ENV = [
+  import.meta.env.VITE_CONTACT_PHONE_1
+    ? {
+        label: 'WhatsApp — Sales',
+        value: import.meta.env.VITE_CONTACT_PHONE_1,
+        wa: import.meta.env.VITE_CONTACT_PHONE_1_WA || '',
+      }
+    : null,
+  import.meta.env.VITE_CONTACT_PHONE_2
+    ? { label: 'Phone — Office', value: import.meta.env.VITE_CONTACT_PHONE_2 }
+    : null,
+].filter(Boolean);
+
 export const SETTINGS = {
   siteName: 'DevXSolution',
   tagline: 'We help SMEs and startups turn their ideas into real digital products.',
-  email: 'halo@devxsolution.com',
-  phone: '+62 812-3456-7890',
-  whatsapp: '6281234567890',
-  address: 'Jakarta, Indonesia',
+  email: EMAIL_FROM_ENV || 'halo@devxsolution.com',
+  phones:
+    PHONES_FROM_ENV.length > 0
+      ? PHONES_FROM_ENV
+      : [
+          { label: 'WhatsApp — Sales', value: '+62 812-3456-7890', wa: '6281234567890' },
+          { label: 'Phone — Office', value: '+62 813-9876-5432' },
+        ],
+  address: 'Denpasar, Bali',
   social: {
     linkedin: 'https://linkedin.com/company/devxsolution',
     instagram: 'https://instagram.com/devxsolution',
@@ -28,7 +53,7 @@ export const SERVICES = [
     icon: 'cpu',
     title: 'AI Solutions',
     description:
-      'Automasi yang dirancang untuk cara kerja Anda, bukan sekadar pojok teknologi yang hubungannya.',
+      'Automation built around the way your team already works — not a shiny corner of tech nobody asked for.',
     highlights: ['Machine Learning', 'Computer Vision', 'Natural Language Processing'],
   },
   {
@@ -36,7 +61,7 @@ export const SERVICES = [
     icon: 'cloud',
     title: 'Cloud Solutions',
     description:
-      'Infrastruktur yang bisa tumbuh bersama usaha Anda, dibangun di atas kebutuhan, bukan sekadar standar.',
+      'Infrastructure that grows with your business — built on what you actually need, not a generic checklist.',
     highlights: ['Cloud Migration', 'DevOps & CI/CD', 'Monitoring & Backup'],
   },
   {
@@ -44,7 +69,7 @@ export const SERVICES = [
     icon: 'smartphone',
     title: 'Mobile Apps',
     description:
-      'Aplikasi mobile yang rapi, nyaman dipakai harian, dan siap rilis ke App Store maupun Play Store.',
+      'Mobile apps that feel clean, hold up in daily use, and ship ready for the App Store and Play Store.',
     highlights: ['iOS & Android', 'Flutter / React Native', 'App Store Publishing'],
   },
   {
@@ -52,34 +77,40 @@ export const SERVICES = [
     icon: 'wifi',
     title: 'IoT Solutions',
     description:
-      'Sensor, dashboard, dan koneksi ke sistem bisnis Anda — semua dalam satu alur yang bisa dipakai.',
+      'Sensors, dashboards, and hooks into the systems you already run — all wired into one flow people can use.',
     highlights: ['Smart Devices', 'Realtime Dashboard', 'System Integration'],
   },
 ];
 
+// Angka jujur untuk studio yang baru jalan: tanpa klaim klien/pengalaman puluhan
+// tahun — isinya komitmen yang memang bisa kami tepati.
 export const STATS = [
-  { label: 'Projects Delivered', value: '50+' },
-  { label: 'Happy Clients', value: '30+' },
-  { label: 'Years of Experience', value: '5+' },
-  { label: 'Tech Stack', value: '20+' },
+  { label: 'Projects Shipped', value: '3' },
+  { label: 'First Call', value: '30 min' },
+  { label: 'Bug-fix Cover', value: '3 mo' },
+  { label: 'Source Handover', value: '100%' },
 ];
 
 export const WHY_US = [
   {
-    title: 'Multi-disciplinary team',
-    description: 'Satu tim yang punya grafik backend, data, dan operasional — jadi Anda tidak perlu kumpulkan vendor sendiri.',
+    title: 'One team, whole stack',
+    description:
+      'Design, backend, data, and ops all sit on the same team — so you are not juggling five vendors or translating between them.',
   },
   {
     title: 'Transparent & measurable',
-    description: 'Komitmen jelas: perkembangan rutin, demo yang bisa kamu lihat, dan laporan yang nggak ribet.',
+    description:
+      'A clear plan up front, a working demo you can click through every week, and updates written in plain English. No jargon, no surprises.',
   },
   {
     title: 'Tech that fits the need',
-    description: 'Kita pilih teknologi berdasarkan pekerjaan Anda, bukan tren. Karena baru yang enak dipakai jangka panjang.',
+    description:
+      'We pick tools your team will still be happy using two years from now — not whatever happens to be trending this month.',
   },
   {
     title: 'Long-term support',
-    description: 'Jaminan perbaikan lubang kecil selama tiga bulan, plus opsi layanan terdokumentasi kalau butuh.',
+    description:
+      'Three months of small-bug fixes after launch, on us. If you want us to stay longer, there is a documented support plan waiting.',
   },
 ];
 
@@ -90,66 +121,66 @@ export const PROCESS_STEPS = [
   { step: '04', title: 'Deploy & Support', description: 'Launch, a short training session, a bug-fix warranty, and optional maintenance.' },
 ];
 
+// Karya nyata — tiga proyek yang sudah live, ditautkan ke situsnya sendiri.
 export const PROJECTS = [
   {
-    slug: 'demo-project-1',
-    title: 'Factory IoT Monitoring System',
-    category: 'IoT Solutions',
-    description: 'Tampilan yang menampilkan suhu, kelembapan, dan data sensor produksi secarag langsung.',
-    tech: ['React', 'Node.js', 'MongoDB', 'MQTT'],
-    image: '',
-    link: '',
-  },
-  {
-    slug: 'demo-project-2',
-    title: 'Warehouse Object Detection AI',
-    category: 'AI Solutions',
-    description: 'Visual yang bisa menghitung dan melacak stok dari kamera, dari sisi yang bisa diperiksa.',
-    tech: ['Python', 'TensorFlow', 'OpenCV'],
-    image: '',
-    link: '',
-  },
-  {
-    slug: 'demo-project-3',
-    title: 'Fashion E-Commerce Platform',
+    slug: 'apotek-nusa',
+    title: 'Apotek Nusa',
     category: 'Web Development',
-    description: 'Toko online dengan pembayaran, pengiriman, dan halaman admin yang nyaman dipakai tim.',
-    tech: ['Next.js', 'PostgreSQL', 'Midtrans'],
-    image: '',
-    link: '',
+    description:
+      'A premium site for a 24-hour pharmacy: live open/closed status, weekly promos, outlet list, careers and FAQ — dark theme with gold accents, scoring 92–96 on Lighthouse mobile.',
+    tech: ['React', 'Vite', 'Tailwind CSS', 'Framer Motion'],
+    image: '/images/projects/apotek-nusa.png',
+    link: 'https://apotek-nusa.vercel.app',
   },
   {
-    slug: 'demo-project-4',
-    title: 'Multi-Outlet POS App',
-    category: 'Mobile Apps',
-    description: 'Aplikasi POS yang bisa dipakai di dua sistem sekaligus, dan tetap bisa bekerja saat jaringan lemot.',
-    tech: ['Flutter', 'Firebase'],
-    image: '',
-    link: '',
+    slug: 'farmacare',
+    title: 'FarmaCare',
+    category: 'Web App',
+    description:
+      'A full pharmacy storefront: drug catalogue, cart, checkout with QR payment, prescription uploads, pharmacist chat and order tracking — plus an admin area for outlets and stock.',
+    tech: ['React 19', 'React Router', 'Tailwind CSS', 'QR Code'],
+    image: '/images/projects/farmacare.png',
+    link: 'https://farmacare-ten.vercel.app',
+  },
+  {
+    slug: 'apotek-3d',
+    title: 'Apotek 3D',
+    category: '3D / WebGL',
+    description:
+      'Walk the pharmacy shelves in 3D from anywhere: pick products in a real-time three.js store, order them for delivery, with pharmacist chat and weekly promos on top.',
+    tech: ['React', 'Three.js', 'React Three Fiber', 'Postprocessing'],
+    image: '/images/projects/apotek3d.png',
+    link: 'https://apotek3d.vercel.app',
   },
 ];
 
-export const TESTIMONIALS = [
+// Pengganti testimoni: belum ada klien, jadi yang ditampilkan cara kerja kami —
+// komitmen yang bisa dipercaya tanpa kutipan atau nama klien palsu.
+export const HOW_WE_WORK = [
   {
-    name: 'Andi Wijaya',
-    role: 'CEO, PT Maju Teknologi',
-    quote:
-      'Timnya cepat merespons, hasilnya sesuai, dan proses pengiriman teratur. Nggak ada drama yang merdu.',
-    rating: 5,
+    title: 'You talk to the builders',
+    text: 'No account managers and no ticket queue — the people writing your code are in the conversation from day one.',
   },
   {
-    name: 'Sari Kusuma',
-    role: 'Owner, Retail Bumami',
-    quote:
-      'Aplikasinya gampang dipakai kasir, juga support jam buka yang baru nambah. Cocok banget buat kami.',
-    rating: 5,
+    title: 'A demo you can click',
+    text: 'Working software every week, so surprises show up early while course corrections are still cheap.',
   },
   {
-    name: 'Budi Santoso',
-    role: 'Operations Manager, Pabrik Sejahtera',
-    quote:
-      'Layarnya mantep, dashboardnya ngasih gambaran yang gampang di baca, dan mesinnya nggak lagi macet 5 jam.',
-    rating: 5,
+    title: 'Plain-English updates',
+    text: 'Progress, risks and costs written the way you would explain them to your co-founder — never hidden behind jargon.',
+  },
+  {
+    title: 'Scope agreed in writing',
+    text: 'What is in, what is out, and what it costs — settled before we start, and referred back to when things change.',
+  },
+  {
+    title: 'Handover, not lock-in',
+    text: 'Full source code, setup notes and a short walkthrough are yours to keep, whoever you build with next.',
+  },
+  {
+    title: 'We stay after launch',
+    text: 'Three months of small-bug fixes come with every build, plus an optional retainer if you want us to keep going.',
   },
 ];
 
@@ -157,30 +188,31 @@ export const FAQS = [
   {
     question: 'How long does a project take?',
     answer:
-      'Terlihat ribet tergantung yang diminta. Profil perusahaan biasanya 2–4 minggu, aplikasi bisnis 1–3 bulan. Estimasi detail dikirim lewat proposal.',
+      'It depends on the scope. A company profile usually takes 2–4 weeks, a business app 1–3 months. You get a detailed estimate in the proposal.',
     order: 1,
   },
   {
     question: 'How does the payment schedule work?',
     answer:
-      'Biasanya 40% di awal, 30% saat proyek utama, 30% setelah sistem selesai. Bisa disesuaikan kalau proyeknya lebih besar.',
+      'Typically 40% up front, 30% at the main milestone, and 30% once the system is finished. We can adjust if the project is bigger.',
     order: 2,
   },
   {
     question: 'Is there a warranty and support after launch?',
     answer:
-      'Bisa. Semua proyek ini dilengkapi perbaikan awal 3 bulan, plus opsi layanan bulanan kalau mau.',
+      'Yes. Every project comes with three months of bug fixes, plus an optional monthly support plan if you want it.',
     order: 3,
   },
   {
     question: 'Do we get the source code?',
-    answer: 'Bisa. Source code lengkap diterima setelah pembayaran selesai, lengkap dengan panduan singkat yang gampang diulang.',
+    answer:
+      'Yes. You get the full source code once payment is complete, along with a short handover guide that is easy to follow.',
     order: 4,
   },
   {
     question: 'Can you extend an existing system?',
     answer:
-      'Bisa. Kita mulai dari audit teknis, baru lanjutkan ke usulan perbaikan atau migrasi.',
+      'Yes. We start with a technical audit, then move on to a proposal for fixes or migration.',
     order: 5,
   },
 ];

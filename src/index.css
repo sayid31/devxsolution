@@ -1,9 +1,23 @@
 @import"tailwindcss/base";@import"tailwindcss/components";@import"tailwindcss/utilities";
 
+/* Anchor (#layanan, #kontak, dst.) harus berhenti di bawah navbar fixed
+   (~72px), bukan tertutup di baliknya — berlaku di semua lebar layar. */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
 body {
   font-family: Inter, system-ui, sans-serif;
   color: #1e293b;
   background: #fff;
+  /* Jaring pengaman: kanvas 3D / teks outline tidak boleh bikin scroll
+     horizontal di layar sempit. `clip` (bukan `hidden`) supaya html tetap
+     jadi satu-satunya penampung scroll — posisi sticky & anchor tetap jalan. */
+  overflow-x: clip;
 }
 
 .font-display { font-family: Poppins, Inter, sans-serif; }

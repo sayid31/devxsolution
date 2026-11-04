@@ -12,17 +12,19 @@ const PLACEHOLDER_GRADIENTS = [
 
 export default function Portfolio({ projects }) {
   return (
-    <section id="portofolio" className="bg-gradient-brand py-20 sm:py-28">
+    <section id="portofolio" className="bg-gradient-brand py-16 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <p className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-700">
           ✦ Selected work.
         </p>
         <h2 className="font-display mt-4 text-3xl font-extrabold leading-[1.08] tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
           Projects we build,
-          <span className="text-outline">built to last.</span>
+          {/* Spasi eksplisit: tanpa ini JSX membuang whitespace di akhir baris
+              dan judul jadi "build,built" (tanpa jarak) di semua layar. */}
+          <span className="text-outline"> built to last.</span>
         </h2>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2">
+        <div className="mt-10 grid gap-8 sm:mt-16 sm:grid-cols-2 sm:gap-6 lg:gap-8">
           {(projects || []).map((p, i) => (
             <article
               key={p.slug || p.title || i}
@@ -55,8 +57,10 @@ export default function Portfolio({ projects }) {
                   </div>
                 )}
 
-                {/* Label EXPLORE ala TRIONN */}
-                <span className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 translate-y-3 rounded-full bg-white px-5 py-2 text-[11px] font-bold uppercase tracking-[0.25em] text-blue-700 opacity-0 shadow-lg transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                {/* Label EXPLORE ala TRIONN — di layar sentuh (tanpa hover)
+                    tetap tampil, hanya desktop besar yang menyembunyikan lalu
+                    menampilkannya saat hover kartu. */}
+                <span className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-white px-5 py-2 text-[11px] font-bold uppercase tracking-[0.25em] text-blue-700 shadow-lg transition-all duration-300 lg:translate-y-3 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
                   View project →
                 </span>
               </div>
@@ -95,8 +99,8 @@ export default function Portfolio({ projects }) {
           ))}
         </div>
 
-        <p className="mt-14 text-center text-xs text-slate-400">
-          * Images above are placeholders — they will be replaced with real project documentation.
+        <p className="mt-10 text-center text-xs text-slate-400 sm:mt-14">
+          * All three projects are live — open one and click around.
         </p>
       </div>
     </section>

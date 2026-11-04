@@ -1,12 +1,12 @@
 import { useRef } from 'react';
-import { Linkedin, Instagram, Github, Mail, Phone, MapPin } from 'lucide-react';
+import { Linkedin, Instagram, Github, Mail, Phone, MessageCircle, MapPin } from 'lucide-react';
+import { getPhones, phoneHref } from '../lib/contact';
 
 const NAV = [
-  { href: '#layanan', label: 'Layanan' },
+  { href: '#layanan', label: 'Services' },
   { href: '#keunggulan', label: 'Why us' },
-  { href: '#portofolio', label: 'Pekerjaan' },
-  { href: '#tentang', label: 'Tentang Kami' },
-  { href: '#kontak', label: 'Kontak' },
+  { href: '#portofolio', label: 'Work' },
+  { href: '#kontak', label: 'Contact' },
 ];
 
 const SERVICES = [
@@ -53,10 +53,14 @@ export default function Footer({ settings }) {
   const site = settings?.siteName || 'DevXSolution';
   const wordmark = (site || 'DevXSolution').toUpperCase();
   const tick = useHoverLinesSound();
+  // 2 nomor dari settings.phones (placeholder di data/fallback.js).
+  const phones = getPhones(settings);
 
   return (
     <footer className="relative bg-gradient-brand">
-      {/* Garis berkali-kali ala gambar footer — link biru, top/bottom border */}
+      {/* Garis berkali-kali ala gambar footer — link biru, top/bottom border.
+          Di layar sempit setiap garis kedua disembunyikan supaya tetap terbaca
+          sebagai garis putus-putus rapi, bukan 30 titik yang menyusut. */}
       <div
         data-lines
         onMouseMove={tick}
@@ -64,12 +68,15 @@ export default function Footer({ settings }) {
         className="mx-auto flex h-16 max-w-7xl items-stretch justify-between px-6 pt-2"
       >
         {Array.from({ length: 30 }).map((_, i) => (
-          <span key={i} className="block h-[2px] w-10 bg-blue-700" />
+          <span
+            key={i}
+            className={`block h-[2px] w-4 shrink bg-blue-700 sm:w-10 ${i % 2 === 1 ? 'hidden sm:block' : ''}`}
+          />
         ))}
       </div>
 
       {/* Info kolom, monokrom */}
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-10 pt-8 sm:px-6 md:grid-cols-4 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 pb-10 pt-8 sm:grid-cols-2 sm:gap-10 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div>
           <a href="#beranda" aria-label={site} className="flex items-center">
             <img src="/logo-devxsolution-transparent.svg" alt={site} className="h-8 w-auto" />
@@ -134,17 +141,35 @@ export default function Footer({ settings }) {
             Contact
           </h3>
           <ul className="mt-4 space-y-3 text-sm">
-            <li className="flex items-center gap-2">
-              <Mail size={15} className="text-blue-700" />{' '}
-              <span className="text-slate-500">{settings?.email || 'halo@devxsolution.com'}</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <Phone size={15} className="text-blue-700" />{' '}
-              <span className="text-slate-500">{settings?.phone || '+62 812-3456-7890'}</span>
-            </li>
             <li className="flex items-start gap-2">
-              <MapPin size={15} className="mt-0.5 text-blue-700" />{' '}
-              <span className="text-slate-500">{settings?.address || 'Jakarta, Indonesia'}</span>
+              <Mail size={15} className="mt-0.5 shrink-0 text-blue-700" />
+              <a
+                href={`mailto:${settings?.email || 'halo@devxsolution.com'}`}
+                className="break-all text-slate-500 transition hover:text-blue-700"
+              >
+                {settings?.email || 'halo@devxsolution.com'}
+              </a>
+            </li>
+            {/* 2 nomor: ikon chat untuk WhatsApp, ikon telepon untuk nomor kantor */}
+            {phones.map((p) => (
+              <li key={`${p.label}-${p.value}`} className="flex items-start gap-2">
+                {p.wa ? (
+                  <MessageCircle size={15} className="mt-0.5 shrink-0 text-blue-700" />
+                ) : (
+                  <Phone size={15} className="mt-0.5 shrink-0 text-blue-700" />
+                )}
+                <a
+                  href={phoneHref(p)}
+                  title={p.label}
+                  className="whitespace-nowrap text-slate-500 transition hover:text-blue-700"
+                >
+                  {p.value}
+                </a>
+              </li>
+            ))}
+            <li className="flex items-start gap-2">
+              <MapPin size={15} className="mt-0.5 shrink-0 text-blue-700" />
+              <span className="text-slate-500">{settings?.address || 'Denpasar, Bali'}</span>
             </li>
           </ul>
         </div>

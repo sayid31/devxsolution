@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
+import { getPhones, phoneHref } from '../lib/contact';
 
 export default function Contact({ settings }) {
   const [status, setStatus] = useState('idle'); // idle | loading | success | error
@@ -23,46 +24,54 @@ export default function Contact({ settings }) {
     }
   }
 
-  const email = settings?.email || 'halo@devxsolution.com';
-  const phone = settings?.phone || '+62 812-3456-7890';
+  const email = settings?.email || 'devxsolutioninfo@gmail.com';
+  // 2 nomor dari settings.phones (lihat data/fallback.js — nilai placeholder).
+  const phones = getPhones(settings);
+
+  const cards = [
+    { icon: Mail, label: 'Email', value: email, href: `mailto:${email}` },
+    ...phones.map((p) => ({
+      icon: Phone,
+      label: p.label || 'Phone',
+      value: p.value,
+      href: phoneHref(p),
+    })),
+    { icon: MapPin, label: 'Location', value: settings?.address || 'Denpasar, Bali' },
+  ];
 
   return (
-    <section id="kontak" className="py-20 sm:py-24">
+    <section id="kontak" className="py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center reveal">
           <p className="text-sm font-semibold uppercase tracking-widest text-blue-700">Contact</p>
           <h2 className="font-display mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">
-            Cerita kepada tim yang mau ngapain?
+            Tell us what you are trying to build
           </h2>
           <p className="mt-4 text-slate-600">
-            Isi kebutuhan proyek Anda, nanti tim akan kirim estimasi dan garis besar kode kerja dalam 1–2 hari kerja.
+            Share what you need below, and we will send an estimate with a rough plan within 1–2 business days.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_1.4fr]">
+        <div className="mt-10 grid gap-10 sm:mt-14 lg:grid-cols-[1fr_1.4fr]">
           <div className="reveal space-y-5">
-            {[
-              { icon: Mail, label: 'Email', value: email, href: `mailto:${email}` },
-              { icon: Phone, label: 'Phone / WhatsApp', value: phone, href: '#kontak' },
-              { icon: MapPin, label: 'Location', value: settings?.address || 'Jakarta, Indonesia' },
-            ].map((c) => (
+            {cards.map((c) => (
               <div
                 key={c.label}
-                className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+                className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
               >
-                <span className="grid h-12 w-12 place-items-center rounded-xl bg-blue-100 text-blue-700">
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-blue-100 text-blue-700 sm:h-12 sm:w-12">
                   <c.icon size={22} />
                 </span>
-                <div>
+                <div className="min-w-0">
                   <div className="text-xs font-semibold uppercase tracking-wide text-slate-400">
                     {c.label}
                   </div>
                   {c.href ? (
-                    <a href={c.href} className="font-medium text-slate-800 hover:text-blue-700">
+                    <a href={c.href} className="break-all font-medium text-slate-800 hover:text-blue-700">
                       {c.value}
                     </a>
                   ) : (
-                    <div className="font-medium text-slate-800">{c.value}</div>
+                    <div className="break-all font-medium text-slate-800">{c.value}</div>
                   )}
                 </div>
               </div>
@@ -71,7 +80,7 @@ export default function Contact({ settings }) {
 
           <form
             onSubmit={handleSubmit}
-            className="reveal rounded-2xl border border-slate-200 bg-white p-7 shadow-sm sm:p-8"
+            className="reveal rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7 lg:p-8"
           >
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="block">
@@ -81,7 +90,7 @@ export default function Contact({ settings }) {
                   name="name"
                   type="text"
                   placeholder="Your name"
-                  className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-[16px] leading-snug outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 sm:py-2.5 sm:text-sm"
                 />
               </label>
               <label className="block">
@@ -90,8 +99,8 @@ export default function Contact({ settings }) {
                   required
                   name="email"
                   type="email"
-                  placeholder="you@company.com"
-                  className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                  placeholder="devxsolutioninfo@gmail.com"
+                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-[16px] leading-snug outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 sm:py-2.5 sm:text-sm"
                 />
               </label>
               <label className="block">
@@ -100,7 +109,7 @@ export default function Contact({ settings }) {
                   name="phone"
                   type="tel"
                   placeholder="+62 8xx-xxxx-xxxx"
-                  className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-[16px] leading-snug outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 sm:py-2.5 sm:text-sm"
                 />
               </label>
               <label className="block">
@@ -108,7 +117,7 @@ export default function Contact({ settings }) {
                 <select
                   name="service"
                   defaultValue=""
-                  className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-[16px] leading-snug outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 sm:py-2.5 sm:text-sm"
                 >
                   <option value="">— Select a service —</option>
                   <option>Web Development</option>
@@ -121,13 +130,13 @@ export default function Contact({ settings }) {
               </label>
             </div>
             <label className="mt-4 block">
-              <span className="mb-1.5 block text-sm font-medium text-slate-700">Uraikan kebutuhan Anda *</span>
+              <span className="mb-1.5 block text-sm font-medium text-slate-700">Tell us about your project *</span>
               <textarea
                 required
                 name="message"
                 rows={4}
-                placeholder="Contoh: butuh aplikasi POS untuk 5 cabang..."
-                className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                placeholder="e.g. a POS app for 5 branches..."
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-[16px] leading-snug outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 sm:py-2.5 sm:text-sm"
               />
             </label>
 
@@ -149,13 +158,13 @@ export default function Contact({ settings }) {
 
             {status === 'success' && (
               <p className="mt-4 flex items-center gap-2 rounded-xl bg-green-50 px-4 py-3 text-sm text-green-700">
-                <CheckCircle2 size={18} /> Terima kasih! Pesan Anda telah terkirim — balasan
-                akan dikirim dalam 1–2 hari kerja.
+                <CheckCircle2 size={18} /> Thanks! Your message is on its way — we usually reply
+                within 1–2 business days.
               </p>
             )}
             {status === 'error' && (
               <p className="mt-4 flex items-center gap-2 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
-                <AlertCircle size={18} /> Gagal mengirim. Coba lagi atau email langsung ke kami.
+                <AlertCircle size={18} /> That did not go through. Try again, or email us directly.
               </p>
             )}
           </form>

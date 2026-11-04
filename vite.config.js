@@ -26,7 +26,8 @@ export default defineConfig({
     port: 5180,
     strictPort: true,
     proxy: {
-      '/api': 'http://localhost:5000',
+      // Port API dipindah dari 5000 ke 5100 (lihat server/.env).
+      '/api': 'http://localhost:5100',
     },
   },
 });

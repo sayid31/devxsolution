@@ -9,13 +9,13 @@ import Marquee from './components/Marquee';
 import Services from './components/Services';
 import WhyUs from './components/WhyUs';
 import Portfolio from './components/Portfolio';
-import Testimonials from './components/Testimonials';
+import HowWeWork from './components/HowWeWork';
 import Faq from './components/Faq';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Preloader from './components/Preloader';
 
-import { SERVICES, PROJECTS, TESTIMONIALS, FAQS, SETTINGS } from './data/fallback';
+import { SERVICES, PROJECTS, FAQS, SETTINGS } from './data/fallback';
 
 const SERVICE_LABELS = [
   'Web Development',
@@ -30,7 +30,6 @@ export default function App() {
   const [data, setData] = useState({
     services: SERVICES,
     projects: PROJECTS,
-    testimonials: TESTIMONIALS,
     faqs: FAQS,
     settings: SETTINGS,
   });
@@ -61,7 +60,7 @@ export default function App() {
         <Services services={data.services} />
         <WhyUs />
         <Portfolio projects={data.projects} />
-        <Testimonials testimonials={data.testimonials} />
+        <HowWeWork />
         <Faq faqs={data.faqs} />
         <Marquee
           items={[

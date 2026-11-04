@@ -92,14 +92,21 @@ export default function HeroCanvas({ mode = 'stage', focus }) {
         const bottom = Math.min(Math.max(f.bottom, 0.15), 1) * h;
         const region = Math.max(bottom - top, 60);
         const centerPx = (top + bottom) / 2;
-        // Jarak agar X pas muat pada region vertikal (dengan margin 12%).
-        let dist = (X_SPAN * h) / (2 * tanHalf * region * 0.88);
+        // X mengisi 86% zona aman (dulu 80%) → di layar kecil terlihat
+        // cukup besar, tapi masih menyisakan jarak ke teks di atas dan
+        // blok EST di bawah.
+        let dist = (X_SPAN * h) / (2 * tanHalf * region * 0.86);
         // ...dan tetap utuh secara horizontal.
         dist = Math.max(dist, (X_SPAN * 1.15) / (2 * tanHalf * aspect), 6.2);
         camera.position.z = dist;
-        // Geser kamera vertikal supaya pusat X jatuh di tengah zona aman.
         const pxPerWorld = h / (2 * tanHalf * dist);
+        // Vertikal: pusat X jatuh persis di tengah zona aman.
         camera.position.y = (centerPx - h / 2) / pxPerWorld;
+        // Horizontal: di layar sempit X digeser sedikit ke kanan supaya
+        // komposisinya sama seperti desktop — teks di kiri, objek di kanan —
+        // bukan benda kecil yang berdiri pas di tengah ruang kosong.
+        const centerXPx = w * 0.55;
+        camera.position.x = (w / 2 - centerXPx) / pxPerWorld;
       } else {
         camera.position.z = Math.max(BASE_DIST, distForWidth);
         camera.position.y = 0;

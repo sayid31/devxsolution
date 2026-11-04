@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import { getPhones, phoneHref } from '../lib/contact';
 
 const LINKS = [
-  { href: '#beranda', label: 'Beranda' },
-  { href: '#layanan', label: 'Layanan' },
+  { href: '#beranda', label: 'Home' },
+  { href: '#layanan', label: 'Services' },
   { href: '#keunggulan', label: 'Why us' },
-  { href: '#portofolio', label: 'Pekerjaan' },
-  { href: '#tentang', label: 'Tentang Kami' },
-  { href: '#kontak', label: 'Kontak' },
+  { href: '#portofolio', label: 'Work' },
+  { href: '#kontak', label: 'Contact' },
 ];
 
 // Menu minimal slide panel ala TRIONN: tombol "Menu" membuka overlay besar dengan
@@ -38,7 +38,7 @@ export default function Navbar({ settings }) {
           scrolled ? 'bg-white/85 shadow-sm backdrop-blur' : 'bg-transparent'
         }`}
       >
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4 lg:px-8">
           <a href="#beranda" aria-label={siteName} className="flex items-center">
             <img src="/logo-devxsolution-transparent.svg" alt={siteName} className="h-8 w-auto sm:h-9" />
           </a>
@@ -48,13 +48,13 @@ export default function Navbar({ settings }) {
               href="#kontak"
               className="hidden items-center gap-2 rounded-full border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-blue-700 hover:text-blue-700 sm:inline-flex"
             >
-              Mulai Proyek <ArrowUpRight size={15} />
+              Start a Project <ArrowUpRight size={15} />
             </a>
             <button
               type="button"
               onClick={() => setOpen(true)}
               aria-label="Open menu"
-              className="group inline-flex items-center gap-3 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+              className="group inline-flex items-center gap-3 rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 sm:py-2.5"
             >
               Menu
               <span aria-hidden="true" className="flex flex-col gap-[3px]">
@@ -135,9 +135,28 @@ export default function Navbar({ settings }) {
             >
               Start a project <ArrowUpRight size={16} />
             </a>
-            <p className="mt-4 text-center text-xs text-slate-400">
-              {settings?.email || 'halo@devxsolution.com'}
-            </p>
+            {/* Kontak: email + 2 nomor (nilai dari settings, placeholder di fallback) */}
+            <div className="mt-4 space-y-1.5 text-center text-xs text-slate-400">
+              <p>
+                <a
+                  href={`mailto:${settings?.email || 'halo@devxsolution.com'}`}
+                  className="break-all transition hover:text-blue-700"
+                >
+                  {settings?.email || 'halo@devxsolution.com'}
+                </a>
+              </p>
+              {getPhones(settings).map((p) => (
+                <p key={`${p.label}-${p.value}`}>
+                  <a
+                    href={phoneHref(p)}
+                    title={p.label}
+                    className="whitespace-nowrap transition hover:text-blue-700"
+                  >
+                    {p.value}
+                  </a>
+                </p>
+              ))}
+            </div>
           </div>
         </aside>
       </div>

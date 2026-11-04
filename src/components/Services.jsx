@@ -2,7 +2,7 @@ import Icon from './Icon';
 
 export default function Services({ services }) {
   return (
-    <section id="layanan" className="py-20 sm:py-24">
+    <section id="layanan" className="py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center reveal">
           <p className="text-sm font-semibold uppercase tracking-widest text-blue-700">Services</p>
@@ -10,15 +10,15 @@ export default function Services({ services }) {
             One partner for every digital need
           </h2>
           <p className="mt-4 text-slate-600">
-            Website, aplikasi, AI, atau IoT — kita sambut dari yang kecil sampai yang Anda butuhkan.
+            Web, apps, AI, or IoT — from the first small step to the full build you need.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-5 sm:mt-14 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {(services || []).map((s, i) => (
             <article
               key={s.slug || s.title || i}
-              className={`reveal group rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-100 ${
+              className={`reveal group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-100 sm:p-7 ${
                 i === 0 ? 'lg:col-span-2' : ''
               }`}
             >

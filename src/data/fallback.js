@@ -130,7 +130,7 @@ export const PROJECTS = [
     description:
       'A premium site for a 24-hour pharmacy: live open/closed status, weekly promos, outlet list, careers and FAQ — dark theme with gold accents, scoring 92–96 on Lighthouse mobile.',
     tech: ['React', 'Vite', 'Tailwind CSS', 'Framer Motion'],
-    image: '/images/projects/apotek-nusa.png',
+    image: '/images/projects/apotek-nusa.jpg',
     link: 'https://apotek-nusa.vercel.app',
   },
   {
@@ -140,7 +140,7 @@ export const PROJECTS = [
     description:
       'A full pharmacy storefront: drug catalogue, cart, checkout with QR payment, prescription uploads, pharmacist chat and order tracking — plus an admin area for outlets and stock.',
     tech: ['React 19', 'React Router', 'Tailwind CSS', 'QR Code'],
-    image: '/images/projects/farmacare.png',
+    image: '/images/projects/farmacare.jpg',
     link: 'https://farmacare-ten.vercel.app',
   },
   {
@@ -150,7 +150,7 @@ export const PROJECTS = [
     description:
       'Walk the pharmacy shelves in 3D from anywhere: pick products in a real-time three.js store, order them for delivery, with pharmacist chat and weekly promos on top.',
     tech: ['React', 'Three.js', 'React Three Fiber', 'Postprocessing'],
-    image: '/images/projects/apotek3d.png',
+    image: '/images/projects/apotek3d.jpg',
     link: 'https://apotek3d.vercel.app',
   },
 ];

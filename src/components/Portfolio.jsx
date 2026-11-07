@@ -100,7 +100,7 @@ export default function Portfolio({ projects }) {
         </div>
 
         <p className="mt-10 text-center text-xs text-slate-400 sm:mt-14">
-          * All three projects are live — open one and click around.
+          * Every project here is live — open one and click around.
         </p>
       </div>
     </section>

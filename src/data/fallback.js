@@ -121,7 +121,7 @@ export const PROCESS_STEPS = [
   { step: '04', title: 'Deploy & Support', description: 'Launch, a short training session, a bug-fix warranty, and optional maintenance.' },
 ];
 
-// Karya nyata — tiga proyek yang sudah live, ditautkan ke situsnya sendiri.
+// Karya nyata — empat proyek yang sudah live, ditautkan ke situsnya sendiri.
 export const PROJECTS = [
   {
     slug: 'apotek-nusa',
@@ -152,6 +152,16 @@ export const PROJECTS = [
     tech: ['React', 'Three.js', 'React Three Fiber', 'Postprocessing'],
     image: '/images/projects/apotek3d.jpg',
     link: 'https://apotek3d.vercel.app',
+  },
+  {
+    slug: 'diana-tattoo',
+    title: 'Diana Tattoo Studio',
+    category: 'Web Development',
+    description:
+      'A bilingual (EN/ID) site for a Dalung tattoo studio: a six-style gallery, hygiene and aftercare pages, location guide with road landmarks, opening hours and booking via WhatsApp — dark theme with gold accents.',
+    tech: ['HTML', 'CSS', 'JavaScript', 'i18n EN/ID'],
+    image: '/images/projects/diana-tattoo.jpg',
+    link: 'https://www.dianatattoostudio.com/',
   },
 ];
 
